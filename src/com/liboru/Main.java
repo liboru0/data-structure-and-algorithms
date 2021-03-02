@@ -1,4 +1,4 @@
-package com.liboru.dsa;
+package com.liboru;
 
 public class Main {
 
