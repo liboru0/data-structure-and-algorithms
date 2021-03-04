@@ -2,6 +2,10 @@ package com.liboru.datastructure.array.sparsearray;
 
 import java.io.*;
 
+/**
+ * 普通二维数组与稀疏数组的互相转换
+ * @author lbr
+ */
 public class SparseArray {
 
     /**
@@ -9,7 +13,6 @@ public class SparseArray {
      * @param arrayTwo 普通二维数组
      * @return 稀疏数组
      * @author lbr
-     * @date 2021/3/2
      */
     public static int[][] arrayToSparse(int[][] arrayTwo){
 
@@ -143,7 +146,7 @@ public class SparseArray {
         System.out.println("稀疏数组:=====================================");
         SparseArray.print(sparseArray);
 
-        String fileFullName = "D:\\sparseArray.data";
+        String fileFullName = "C:\\sparseArray.data";
 
         SparseArray.writeDisk(sparseArray,fileFullName);
 
