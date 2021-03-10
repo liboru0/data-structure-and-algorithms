@@ -4,7 +4,7 @@ package com.liboru.datastructure.linkedlist;
  * 带 head 的普通单向链表
  * @author lbr
  */
-public class SingleLinkedList<E> {
+public class SingleLinkedWithHeadList<E> {
 
     private Node<E> head = new Node<>(null, null);
 
@@ -61,7 +61,7 @@ public class SingleLinkedList<E> {
 
     public static void main(String[] args) {
 
-        SingleLinkedList<Integer> linkedList = new SingleLinkedList<>();
+        SingleLinkedWithHeadList<Integer> linkedList = new SingleLinkedWithHeadList<>();
         System.out.println(linkedList);
 
         linkedList.add(1);
