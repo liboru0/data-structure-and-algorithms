@@ -20,7 +20,7 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
      */
     public boolean add(E e) {
 
-        if(e==null){
+        if (e == null) {
             throw new NullPointerException();
         }
 
@@ -30,12 +30,12 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
         while (temp.next != null) {
 
-            if(temp.next.item.compareTo(newNode.item)==0){
+            if (temp.next.item.compareTo(newNode.item) == 0) {
                 throw new RuntimeException("元素重复");
             }
 
             // 找到位置就添加到中间
-            if(temp.next.item.compareTo(newNode.item)>0){
+            if (temp.next.item.compareTo(newNode.item) > 0) {
                 newNode.next = temp.next;
                 temp.next = newNode;
                 return true;
@@ -56,16 +56,16 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
      * 关键点：temp 指向预删除节点的前一个位置
      * @author lbr
      */
-    public boolean remove(E e){
+    public boolean remove(E e) {
 
-        if(e==null){
+        if (e == null) {
             throw new NullPointerException();
         }
 
         Node<E> temp = head; // temp 指向待删除的前一个节点
 
-        while(temp.next!=null){
-            if(temp.next.item.equals(e)){
+        while (temp.next != null) {
+            if (temp.next.item.equals(e)) {
                 temp.next = temp.next.next;
                 return true;
             }
@@ -79,7 +79,7 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
      * @apiNote 链表是否为空
      * @author lbr
      */
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return head.next == null;
     }
 
@@ -103,34 +103,34 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
         Node<E> temp = head;
 
-        if(temp.next==null){
+        if (temp.next == null) {
             return "[]";
         }
 
         String str = "[";
 
-        while(temp.next!=null){
+        while (temp.next != null) {
             temp = temp.next;
             str += temp.item.toString() + "->";
         }
 
-        str = str.substring(0,str.length()-2) + "]";
+        str = str.substring(0, str.length() - 2) + "]";
 
         return str;
     }
 
     /**
-     * @apiNote 获取链表的长度
      * @param head 头结点
+     * @apiNote 获取链表的长度
      * @author lbr
      */
-    public int getLength(Node<E> head){
+    public int getLength(Node<E> head) {
 
         int length = 0;
 
         Node<E> temp = head;
 
-        while(temp.next!=null){
+        while (temp.next != null) {
             length++;
             temp = temp.next;
         }
@@ -138,8 +138,100 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
         return length;
     }
 
-    public static void main(String[] args) {
+    /**
+     * @param head head节点
+     * @param k    倒数第k个 从1开始
+     * @return E 此处返回元素
+     * @apiNote 查找倒数第k个元素
+     * @author lbr
+     */
+    public E getKthFromEnd(Node<E> head, int k) {
 
+        int length = 0; // 总长度
+        Node<E> temp = head;
+        while (temp.next != null) {
+            length++;
+            temp = temp.next;
+        }
+
+        if(k<=0 || k>length){
+            return null;
+        }
+
+        Node<E> cur = head;
+        for (int i = 0; i <= length - k ; i++) {
+            cur = cur.next;
+        }
+
+        return cur.item;
+    }
+
+    /**
+     * @param head head节点
+     * @param k    倒数第k个 从1开始
+     * @return E 此处返回元素
+     * @apiNote 查找倒数第k个元素
+     * @author lbr
+     */
+    public E getKthFromEnd2(Node<E> head, int k) {
+
+        Node<E> fast = head;
+        Node<E> slow = head;
+
+        for (int i = 0; i < k && fast!=null; i++) {
+            fast = fast.next;
+        }
+
+        while(fast!=null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        return slow.item;
+
+    }
+
+    public static void main(String[] args) {
+        /*testInsertAndDelete();*/
+
+        /*testGetKthFromEnd();*/
+
+        testGetKthFromEnd2();
+
+    }
+
+    public static void testGetKthFromEnd2() {
+        SingleOrderLinkedWithHeadList<Integer> linked = new SingleOrderLinkedWithHeadList<>();
+        for (int i = 0; i < 5; i++) {
+            linked.add(i+1);
+        }
+        System.out.println(linked);
+
+        System.out.println(linked.getKthFromEnd2(linked.getHead(),1));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(),2));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(),3));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(),4));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(),5));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(),6));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(),7));
+    }
+
+    public static void testGetKthFromEnd() {
+        SingleOrderLinkedWithHeadList<Integer> linked = new SingleOrderLinkedWithHeadList<>();
+        for (int i = 0; i < 1; i++) {
+            linked.add(i+1);
+        }
+        System.out.println(linked);
+
+        System.out.println(linked.getKthFromEnd(linked.getHead(),1));
+        System.out.println(linked.getKthFromEnd(linked.getHead(),2));
+        System.out.println(linked.getKthFromEnd(linked.getHead(),3));
+        System.out.println(linked.getKthFromEnd(linked.getHead(),4));
+        System.out.println(linked.getKthFromEnd(linked.getHead(),5));
+        System.out.println(linked.getKthFromEnd(linked.getHead(),6));
+    }
+
+    public static void testInsertAndDelete() {
         System.out.println("--------添加-------");
         SingleOrderLinkedWithHeadList<Integer> linkedList = new SingleOrderLinkedWithHeadList<>();
         linkedList.add(1);
@@ -172,7 +264,6 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
         System.out.println(linkedList);
 
         System.out.println(linkedList.getLength(linkedList.getHead()));
-
     }
 
 
