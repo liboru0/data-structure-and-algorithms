@@ -5,70 +5,89 @@ package com.liboru.datastructure.linkedlist;
  *
  * @author lbr
  */
-public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
+public class SingleOrderLinkedNoHeadList<E extends Comparable<E>> {
 
-    private Node<E> head = new Node<E>(null, null);
+    private Node<E> first = null;
 
-    public Node<E> getHead() {
-        return head;
+    public Node<E> getFirst() {
+        return first;
     }
 
     /**
      * @apiNote 有序链表的添加，升序，相同顺序则抛出异常
-     * 关键点：temp 指向预插入位置的前一个位置
      * @author lbr
      */
     public boolean add(E e) {
 
-        if(e==null){
-            throw new NullPointerException();
-        }
-
         Node<E> newNode = new Node<>(e, null);
 
-        Node<E> temp = head;
-
-        while (temp.next != null) {
-
-            if(temp.next.item.compareTo(newNode.item)==0){
-                throw new RuntimeException("元素重复");
-            }
-
-            // 找到位置就添加到中间
-            if(temp.next.item.compareTo(newNode.item)>0){
-                newNode.next = temp.next;
-                temp.next = newNode;
-                return true;
-            }
-
-            temp = temp.next;
-
+        if (this.isEmpty()) {
+            first = newNode;
+            return true;
         }
 
-        // 没有找到中间位置就添加到最后
-        temp.next = newNode;
+        if (first.item.compareTo(newNode.item) == 0) {
+            throw new RuntimeException("已经存在相同元素");
+        }
+
+        if (first.item.compareTo(newNode.item) > 0) {
+            newNode.next = first;
+            first = newNode;
+            return true;
+        }
+
+        Node<E> temp = first.next;
+        Node<E> preTemp = first;
+
+        while (temp != null) {
+
+            if (temp.item.compareTo(newNode.item) == 0) {
+                throw new RuntimeException("已经存在相同元素");
+            }
+            if (temp.item.compareTo(newNode.item) > 0) {
+                newNode.next = temp;
+                preTemp.next = newNode;
+                return true;
+            }
+            preTemp = temp;
+            temp = temp.next;
+        }
+
+        preTemp.next = newNode;
 
         return true;
     }
 
     /**
      * @apiNote 删除元素
-     * 关键点：temp 指向预删除节点的前一个位置
      * @author lbr
      */
-    public boolean remove(E e){
+    public boolean remove(E e) {
 
-        if(e==null){
+        if (e == null) {
             throw new NullPointerException();
         }
 
-        Node<E> temp = head; // temp 指向待删除的前一个节点
+        if (isEmpty()) {
+            throw new RuntimeException("链表为空");
+        }
 
-        while(temp.next!=null){
-            if(temp.next.item.equals(e)){
-                temp.next = temp.next.next;
+        Node<E> newNode = new Node<>(e, null);
+
+        if (first.item.equals(e)) {
+            newNode.next = first;
+            first = newNode;
+            return true;
+        }
+
+        Node<E> temp = first.next;
+        Node<E> preTemp = first;
+        while (temp != null) {
+            if (temp.item.equals(newNode.item)) {
+                preTemp.next = temp.next;
                 return true;
             }
+            preTemp = temp;
             temp = temp.next;
         }
 
@@ -79,8 +98,8 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
      * @apiNote 链表是否为空
      * @author lbr
      */
-    public boolean isEmpty(){
-        return head.next == null;
+    public boolean isEmpty() {
+        return first == null;
     }
 
     /**
@@ -101,36 +120,40 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
     @Override
     public String toString() {
 
-        Node<E> temp = head;
-
-        if(temp.next==null){
+        if (isEmpty()) {
             return "[]";
         }
 
-        String str = "[";
+        String str = "[" + first.item;
 
-        while(temp.next!=null){
+        Node<E> temp = first.next;
+
+        while (temp != null) {
+            str += "->" + temp.item.toString();
             temp = temp.next;
-            str += temp.item.toString() + "->";
         }
 
-        str = str.substring(0,str.length()-2) + "]";
+        str = str + "]";
 
         return str;
     }
 
     /**
+     * @param first 第一个节点
      * @apiNote 获取链表的长度
-     * @param head 头结点
      * @author lbr
      */
-    public int getLength(Node<E> head){
+    public int getLength(Node<E> first) {
 
         int length = 0;
 
-        Node<E> temp = head;
+        if (first == null) {
+            return length;
+        }
 
-        while(temp.next!=null){
+        Node<E> temp = first;
+
+        while (temp != null) {
             length++;
             temp = temp.next;
         }
@@ -141,7 +164,7 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
     public static void main(String[] args) {
 
         System.out.println("--------添加-------");
-        SingleOrderLinkedWithHeadList<Integer> linkedList = new SingleOrderLinkedWithHeadList<>();
+        SingleOrderLinkedNoHeadList<Integer> linkedList = new SingleOrderLinkedNoHeadList<>();
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(5);
@@ -159,6 +182,7 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
         linkedList.add(0);
         System.out.println(linkedList);
 
+
         System.out.println("--------删除-------");
         linkedList.remove(1);
         System.out.println(linkedList);
@@ -168,10 +192,8 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
         System.out.println(linkedList);
         linkedList.remove(7);
         System.out.println(linkedList);
-        linkedList.remove(0);
-        System.out.println(linkedList);
 
-        System.out.println(linkedList.getLength(linkedList.getHead()));
+        System.out.println(linkedList.getLength(linkedList.getFirst()));
 
     }
 

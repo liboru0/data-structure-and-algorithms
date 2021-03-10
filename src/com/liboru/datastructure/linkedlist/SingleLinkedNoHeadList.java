@@ -4,9 +4,13 @@ package com.liboru.datastructure.linkedlist;
  * 带 head 的普通单向链表
  * @author lbr
  */
-public class SingleLinkedWithHeadList<E> {
+public class SingleLinkedNoHeadList<E> {
 
-    private Node<E> head = new Node<>(null, null);
+    private Node<E> first = null;
+
+    public boolean isEmpty(){
+        return first == null;
+    }
 
     /**
       * @apiNote 添加到链表尾部
@@ -14,10 +18,16 @@ public class SingleLinkedWithHeadList<E> {
       */
     public boolean add(E e) {
 
-        Node<E> newNode = new Node<>(e, null);
+        Node<E> newNode = new Node<>(e,null);
 
-        Node<E> temp = head;
-        while (temp.next != null) {
+        if(isEmpty()){
+            first = newNode;
+            return true;
+        }
+
+        Node<E> temp = first;
+
+        while(temp.next!=null){
             temp = temp.next;
         }
         temp.next = newNode;
@@ -28,20 +38,20 @@ public class SingleLinkedWithHeadList<E> {
     @Override
     public String toString() {
 
-        Node<E> temp = head;
-
-        if(temp.next==null){
+        if(isEmpty()){
             return "[]";
         }
 
-        String str = "[";
+        String str = "[" + first.item;
 
-        while(temp.next!=null){
+        Node<E> temp = first.next;
+
+        while(temp != null){
+            str += "->" + temp.item.toString() ;
             temp = temp.next;
-            str += temp.item.toString() + "->";
         }
 
-        str = str.substring(0,str.length()-2) + "]";
+        str = str + "]";
 
         return str;
     }
@@ -61,7 +71,7 @@ public class SingleLinkedWithHeadList<E> {
 
     public static void main(String[] args) {
 
-        SingleLinkedWithHeadList<Integer> linkedList = new SingleLinkedWithHeadList<>();
+        SingleLinkedNoHeadList<Integer> linkedList = new SingleLinkedNoHeadList<>();
         System.out.println(linkedList);
 
         linkedList.add(1);
