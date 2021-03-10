@@ -9,7 +9,9 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
     private Node<E> head = new Node<E>(null, null);
 
-    private int size = 0;
+    public Node<E> getHead() {
+        return head;
+    }
 
     /**
      * @apiNote 有序链表的添加，升序，相同顺序则抛出异常
@@ -36,7 +38,6 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
             if(temp.next.item.compareTo(newNode.item)>0){
                 newNode.next = temp.next;
                 temp.next = newNode;
-                size ++;
                 return true;
             }
 
@@ -46,7 +47,6 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
         // 没有找到中间位置就添加到最后
         temp.next = newNode;
-        size ++;
 
         return true;
     }
@@ -81,14 +81,6 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
      */
     public boolean isEmpty(){
         return head.next == null;
-    }
-
-    /**
-     * @apiNote 链表长度
-     * @author lbr
-     */
-    public int size() {
-        return size;
     }
 
     /**
@@ -127,6 +119,25 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
         return str;
     }
 
+    /**
+     * @apiNote 获取链表的长度
+     * @param head 头结点
+     * @author lbr
+     */
+    public int getLength(Node<E> head){
+
+        int length = 0;
+
+        Node<E> temp = head;
+
+        while(temp.next!=null){
+            length++;
+            temp = temp.next;
+        }
+
+        return length;
+    }
+
     public static void main(String[] args) {
 
         System.out.println("--------添加-------");
@@ -144,7 +155,6 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
         linkedList.add(3);
         System.out.println(linkedList);
-        System.out.println(linkedList.size());
 
         System.out.println("--------删除-------");
         linkedList.remove(1);
@@ -155,6 +165,8 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
         System.out.println(linkedList);
         linkedList.remove(7);
         System.out.println(linkedList);
+
+        System.out.println(linkedList.getLength(linkedList.getHead()));
 
     }
 
