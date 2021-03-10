@@ -156,6 +156,9 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
         linkedList.add(3);
         System.out.println(linkedList);
 
+        linkedList.add(0);
+        System.out.println(linkedList);
+
         System.out.println("--------删除-------");
         linkedList.remove(1);
         System.out.println(linkedList);
