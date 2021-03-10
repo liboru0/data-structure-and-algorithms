@@ -139,17 +139,13 @@ public class SingleOrderLinkedNoHeadList<E extends Comparable<E>> {
     }
 
     /**
-     * @param first 第一个节点
      * @apiNote 获取链表的长度
+     * @param first 第一个节点
      * @author lbr
      */
     public int getLength(Node<E> first) {
 
         int length = 0;
-
-        if (first == null) {
-            return length;
-        }
 
         Node<E> temp = first;
 
@@ -165,6 +161,7 @@ public class SingleOrderLinkedNoHeadList<E extends Comparable<E>> {
 
         System.out.println("--------添加-------");
         SingleOrderLinkedNoHeadList<Integer> linkedList = new SingleOrderLinkedNoHeadList<>();
+        System.out.println(linkedList.getLength(linkedList.getFirst()));
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(5);
