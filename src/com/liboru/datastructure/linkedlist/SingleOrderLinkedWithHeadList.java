@@ -154,12 +154,12 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
             temp = temp.next;
         }
 
-        if(k<=0 || k>length){
+        if (k <= 0 || k > length) {
             return null;
         }
 
         Node<E> cur = head;
-        for (int i = 0; i <= length - k ; i++) {
+        for (int i = 0; i <= length - k; i++) {
             cur = cur.next;
         }
 
@@ -178,11 +178,11 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
         Node<E> fast = head;
         Node<E> slow = head;
 
-        for (int i = 0; i < k && fast!=null; i++) {
+        for (int i = 0; i < k && fast != null; i++) {
             fast = fast.next;
         }
 
-        while(fast!=null){
+        while (fast != null) {
             fast = fast.next;
             slow = slow.next;
         }
@@ -191,44 +191,87 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
     }
 
+    /**
+     * @apiNote 单链表反转
+     * @author lbr
+     */
+    public void reverse(Node<E> head) {
+
+        // head  1  2  3  4
+        // head  4  3  2  1
+
+        // 如果当前链表为空 或者 只有一个节点 则无需反转
+        if (head.next == null || head.next.next == null) {
+            return;
+        }
+
+        Node<E> temp = head.next;
+        Node<E> next = null; // 存储下一个节点位置
+
+        Node<E> reverseHead = new Node<>(null,null);
+
+        while(temp!=null){
+            next = temp.next;
+            temp.next = reverseHead.next;
+            reverseHead.next = temp;
+            temp = next;
+        }
+
+        head.next = reverseHead.next;
+
+    }
+
     public static void main(String[] args) {
         /*testInsertAndDelete();*/
 
         /*testGetKthFromEnd();*/
 
-        testGetKthFromEnd2();
+        /*testGetKthFromEnd2();*/
 
+        testReverse();
+
+    }
+
+    public static void testReverse() {
+        SingleOrderLinkedWithHeadList<Integer> linked = new SingleOrderLinkedWithHeadList<>();
+        for (int i = 0; i < 5; i++) {
+            linked.add(i + 1);
+        }
+        System.out.println(linked);
+
+        linked.reverse(linked.getHead());
+        System.out.println(linked);
     }
 
     public static void testGetKthFromEnd2() {
         SingleOrderLinkedWithHeadList<Integer> linked = new SingleOrderLinkedWithHeadList<>();
         for (int i = 0; i < 5; i++) {
-            linked.add(i+1);
+            linked.add(i + 1);
         }
         System.out.println(linked);
 
-        System.out.println(linked.getKthFromEnd2(linked.getHead(),1));
-        System.out.println(linked.getKthFromEnd2(linked.getHead(),2));
-        System.out.println(linked.getKthFromEnd2(linked.getHead(),3));
-        System.out.println(linked.getKthFromEnd2(linked.getHead(),4));
-        System.out.println(linked.getKthFromEnd2(linked.getHead(),5));
-        System.out.println(linked.getKthFromEnd2(linked.getHead(),6));
-        System.out.println(linked.getKthFromEnd2(linked.getHead(),7));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(), 1));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(), 2));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(), 3));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(), 4));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(), 5));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(), 6));
+        System.out.println(linked.getKthFromEnd2(linked.getHead(), 7));
     }
 
     public static void testGetKthFromEnd() {
         SingleOrderLinkedWithHeadList<Integer> linked = new SingleOrderLinkedWithHeadList<>();
         for (int i = 0; i < 1; i++) {
-            linked.add(i+1);
+            linked.add(i + 1);
         }
         System.out.println(linked);
 
-        System.out.println(linked.getKthFromEnd(linked.getHead(),1));
-        System.out.println(linked.getKthFromEnd(linked.getHead(),2));
-        System.out.println(linked.getKthFromEnd(linked.getHead(),3));
-        System.out.println(linked.getKthFromEnd(linked.getHead(),4));
-        System.out.println(linked.getKthFromEnd(linked.getHead(),5));
-        System.out.println(linked.getKthFromEnd(linked.getHead(),6));
+        System.out.println(linked.getKthFromEnd(linked.getHead(), 1));
+        System.out.println(linked.getKthFromEnd(linked.getHead(), 2));
+        System.out.println(linked.getKthFromEnd(linked.getHead(), 3));
+        System.out.println(linked.getKthFromEnd(linked.getHead(), 4));
+        System.out.println(linked.getKthFromEnd(linked.getHead(), 5));
+        System.out.println(linked.getKthFromEnd(linked.getHead(), 6));
     }
 
     public static void testInsertAndDelete() {
