@@ -208,9 +208,9 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
         Node<E> temp = head.next;
         Node<E> next = null; // 存储下一个节点位置
 
-        Node<E> reverseHead = new Node<>(null,null);
+        Node<E> reverseHead = new Node<>(null, null);
 
-        while(temp!=null){
+        while (temp != null) {
             next = temp.next;
             temp.next = reverseHead.next;
             reverseHead.next = temp;
@@ -221,6 +221,37 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
     }
 
+    public void reversePrintByStack(Node<E> head) {
+
+        if (head.next == null) {
+            return;
+        }
+
+        if (head.next.next == null) {
+            System.out.println(head.item);
+        }
+
+        Node<E> cur = head.next;
+        int count = 0;
+        while (cur != null) {
+            cur = cur.next;
+            count++;
+        }
+
+        Object[] arr = new Object[count];
+
+        cur = head.next;
+        for (int i = count - 1; i >= 0; i--) {
+            arr[i] = cur.item;
+            cur = cur.next;
+        }
+
+        for (Object a : arr) {
+            System.out.println(a);
+        }
+
+    }
+
     public static void main(String[] args) {
         /*testInsertAndDelete();*/
 
@@ -228,8 +259,20 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
         /*testGetKthFromEnd2();*/
 
-        testReverse();
+        /*testReverse();*/
 
+        testReversePrint();
+
+    }
+
+    public static void testReversePrint() {
+        SingleOrderLinkedWithHeadList<Integer> linked = new SingleOrderLinkedWithHeadList<>();
+        for (int i = 0; i < 5; i++) {
+            linked.add(i + 1);
+        }
+        System.out.println(linked);
+
+        linked.reversePrintByStack(linked.getHead());
     }
 
     public static void testReverse() {
