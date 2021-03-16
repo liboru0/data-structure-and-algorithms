@@ -89,8 +89,8 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
      * @param <E>
      */
     private static class Node<E extends Comparable<E>> {
-        private E item;
-        private Node<E> next;
+        E item;
+        Node<E> next;
 
         public Node(E item, Node<E> next) {
             this.item = item;

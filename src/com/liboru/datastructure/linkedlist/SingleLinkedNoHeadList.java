@@ -60,8 +60,8 @@ public class SingleLinkedNoHeadList<E> {
      * 链表内部节点
      */
     private static class Node<E> {
-        private E item;
-        private Node<E> next;
+        E item;
+        Node<E> next;
 
         public Node(E item, Node<E> next) {
             this.item = item;
