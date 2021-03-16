@@ -252,6 +252,30 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
     }
 
+    public SingleOrderLinkedWithHeadList<E> mergeTwoLists(Node<E> head1, Node<E> head2){
+
+        SingleOrderLinkedWithHeadList<E> merge = new SingleOrderLinkedWithHeadList<>();
+
+        merge.getHead().next = merge.mergeTwoListsNode(head1.next,head2.next);
+
+        return merge;
+
+    }
+
+    public Node<E> mergeTwoListsNode(Node<E> l1, Node<E> l2){
+        if (l1 == null) {
+            return l2;
+        } else if (l2 == null) {
+            return l1;
+        } else if (l1.item.compareTo(l2.item)<0) {
+            l1.next = mergeTwoListsNode(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeTwoListsNode(l1, l2.next);
+            return l2;
+        }
+    }
+
     public static void main(String[] args) {
         /*testInsertAndDelete();*/
 
@@ -261,7 +285,25 @@ public class SingleOrderLinkedWithHeadList<E extends Comparable<E>> {
 
         /*testReverse();*/
 
-        testReversePrint();
+        /*testReversePrint();*/
+
+        testMergeTwoLists();
+
+    }
+
+    public static void testMergeTwoLists(){
+        SingleOrderLinkedWithHeadList<Integer> one = new SingleOrderLinkedWithHeadList<>();
+        one.add(1);
+        one.add(4);
+        System.out.println(one);
+
+        SingleOrderLinkedWithHeadList<Integer> tow = new SingleOrderLinkedWithHeadList<>();
+        tow.add(2);
+        tow.add(3);
+        System.out.println(tow);
+
+        SingleOrderLinkedWithHeadList<Integer> merge = one.mergeTwoLists(one.getHead(), tow.getHead());
+        System.out.println(merge);
 
     }
 
