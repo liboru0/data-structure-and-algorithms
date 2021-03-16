@@ -53,12 +53,57 @@ public class SingleCircleLinkedNoHeadList<E> {
         return str;
     }
 
+    /**
+     * @param startNo  表示从第几个节点开始数数
+     * @param countNum 表示数几下
+     * @param nums     表示最初的总节点数
+     * @apiNote 约瑟夫问题
+     * @author lbr
+     */
+    public void josepfu(int startNo, int countNum, int nums) {
+
+        // 数据校验
+        if (first == null || startNo < 1 || startNo > nums) {
+            System.out.println("参数有误！！！");
+            return;
+        }
+
+        // 初始化 helper ，使其指向最后一个节点
+        Node<E> helper = first.next;
+        while (helper.next != first) {
+            helper = helper.next;
+        }
+
+        // 将first移动到开始数的那个节点，helper紧随其后
+        for (int i = 0; i < startNo - 1; i++) {
+            first = first.next;
+            helper = helper.next;
+        }
+
+        while (first != helper) {
+            for (int i = 0; i < countNum - 1; i++) {
+                first = first.next;
+                helper = helper.next;
+            }
+            System.out.println(("出圈：" + first.item));
+            first = first.next;
+            helper.next = first;
+        }
+
+        System.out.println(("出圈：" + first.item));
+
+        first = null;
+
+    }
+
     public static void main(String[] args) {
         SingleCircleLinkedNoHeadList<Integer> linked = new SingleCircleLinkedNoHeadList<>();
         for (int i = 1; i <= 5; i++) {
             linked.add(i);
         }
         System.out.println(linked);
+        linked.josepfu(1, 2, 5);
+
     }
 
 }
