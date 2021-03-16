@@ -19,6 +19,10 @@ public class ArrayStack<E> {
      */
     private int top = -1;
 
+    public ArrayStack() {
+        this(100);
+    }
+
     public ArrayStack(int maxSize) {
         this.maxSize = maxSize;
         elementData = new Object[maxSize];
@@ -45,6 +49,13 @@ public class ArrayStack<E> {
             throw new RuntimeException("栈空");
         }
         return (E) elementData[top--];
+    }
+
+    public E peek(){
+        if(isEmpty()){
+            throw new RuntimeException("栈空");
+        }
+        return (E) elementData[top];
     }
 
     @Override
