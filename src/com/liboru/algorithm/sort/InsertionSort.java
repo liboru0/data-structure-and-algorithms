@@ -11,18 +11,15 @@ public class InsertionSort {
      */
     public static void sort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
-
             // 待插入的数据
             int insertVal = arr[i];
-            // 待比较的位置
-            int compareIndex = i - 1;
+            int j = 0;
 
-            while (compareIndex >= 0 && insertVal < arr[compareIndex]) {
-                arr[compareIndex + 1] = arr[compareIndex];
-                compareIndex--;
+            for (j = i - 1; j >= 0 && insertVal < arr[j]; j--) {
+                arr[j + 1] = arr[j];
             }
 
-            arr[compareIndex + 1] = insertVal;
+            arr[j + 1] = insertVal;
         }
     }
 
