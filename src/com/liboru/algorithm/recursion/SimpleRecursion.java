@@ -1,4 +1,4 @@
-package com.liboru.datastructure.recursion;
+package com.liboru.algorithm.recursion;
 
 public class SimpleRecursion {
 
