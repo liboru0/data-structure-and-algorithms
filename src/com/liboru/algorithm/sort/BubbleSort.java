@@ -53,17 +53,13 @@ public class BubbleSort {
 
     }
 
-    public static void print(int[] arr) {
-        System.out.println(Arrays.toString(arr));
-    }
-
     public static void main(String[] args) {
 
         int[] arr = {8, 7, 6, 5, 4, 3, 2, 1};
 
-        BubbleSort.print(arr);
+        System.out.println(Arrays.toString(arr));
         BubbleSort.sort(arr);
-        BubbleSort.print(arr);
+        System.out.println(Arrays.toString(arr));
 
     }
 
