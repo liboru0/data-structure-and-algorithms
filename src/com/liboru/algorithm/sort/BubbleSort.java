@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class BubbleSort {
 
     /**
-     * @param arr 要排序的数组
      * @apiNote 冒泡排序
+     * @param arr 要排序的数组
      * @author lbr
      */
     public static void sort(int[] arr) {
@@ -25,8 +25,8 @@ public class BubbleSort {
     }
 
     /**
-     * @param arr 要排序的数组
      * @apiNote 优化后的冒泡排序
+     * @param arr 要排序的数组
      * @author lbr
      */
     public static void sortOptimizing(int[] arr) {
@@ -56,8 +56,8 @@ public class BubbleSort {
     public static void main(String[] args) {
 
         int[] arr = {8, 7, 6, 5, 4, 3, 2, 1};
-
         System.out.println(Arrays.toString(arr));
+
         BubbleSort.sort(arr);
         System.out.println(Arrays.toString(arr));
 
