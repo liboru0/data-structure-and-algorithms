@@ -4,14 +4,11 @@ import java.util.Arrays;
 
 public class ShellSort {
 
-    public static void main(String[] args) {
-        int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
-        System.out.println(Arrays.toString(arr));
-
-        ShellSort.sort(arr);
-        System.out.println(Arrays.toString(arr));
-    }
-
+    /**
+     * @param arr 要排序的数组
+     * @apiNote 希尔排序
+     * @author lbr
+     */
     public static void sort(int[] arr) {
 
         int n = arr.length;
@@ -29,6 +26,14 @@ public class ShellSort {
         }
 
 
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
+        System.out.println(Arrays.toString(arr));
+
+        ShellSort.sort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
 }
