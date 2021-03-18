@@ -14,6 +14,7 @@ public class ShellSort {
         int n = arr.length;
         int gap = n / 2;
         while (gap >= 1) {
+            // 插入排序 begin
             for (int i = gap; i < arr.length; i++) {
                 int insertVal = arr[i];
                 int j = 0;
@@ -22,6 +23,7 @@ public class ShellSort {
                 }
                 arr[j + gap] = insertVal;
             }
+            // 插入排序 end
             gap = gap / 2;
         }
 
