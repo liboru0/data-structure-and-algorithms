@@ -2,7 +2,7 @@ package com.liboru.algorithm.search;
 
 public class SeqSearch {
 
-    public static int seqSearch(int[] arr, int value) {
+    public static int search(int[] arr, int value) {
 
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == value) {
@@ -17,9 +17,9 @@ public class SeqSearch {
 
         int[] arr = {1, 9, 11, -1, 34, 23, 434};
 
-        System.out.println(SeqSearch.seqSearch(arr,-1));
-        System.out.println(SeqSearch.seqSearch(arr,23));
-        System.out.println(SeqSearch.seqSearch(arr,100));
+        System.out.println(SeqSearch.search(arr,-1));
+        System.out.println(SeqSearch.search(arr,23));
+        System.out.println(SeqSearch.search(arr,100));
 
     }
 
