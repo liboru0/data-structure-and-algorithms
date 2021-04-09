@@ -34,13 +34,13 @@ public class BinaryTreeTest {
          */
 
         System.out.println("前序遍历");
-        binaryTree.preList(); // 1 2 3 4 5
+        binaryTree.preOrderList(); // 1 2 3 4 5
 
         System.out.println("中序遍历");
-        binaryTree.infixList(); // 2 1 4 3 5
+        binaryTree.infixOrderList(); // 2 1 4 3 5
 
         System.out.println("后序遍历");
-        binaryTree.postList(); // 2 4 5 3 1
+        binaryTree.postOrderList(); // 2 4 5 3 1
     }
 
 }
