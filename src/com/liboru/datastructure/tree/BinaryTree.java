@@ -71,6 +71,7 @@ public class BinaryTree<E> {
     }
 
     private E preOrderSearch(E e, TreeNode<E> node) {
+        System.out.println("前序查找比较");
         if (node.item.equals(e)) {
             return e;
         }
@@ -101,6 +102,7 @@ public class BinaryTree<E> {
                 return resultLeft;
             }
         }
+        System.out.println("中序查找比较");
         if (node.item.equals(e)) {
             return e;
         }
@@ -131,6 +133,7 @@ public class BinaryTree<E> {
                 return resultRight;
             }
         }
+        System.out.println("后序查找比较");
         if (node.item.equals(e)) {
             return e;
         }
