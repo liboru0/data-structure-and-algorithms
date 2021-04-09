@@ -3,6 +3,17 @@ package com.liboru.datastructure.tree;
 public class BinaryTreeTest {
 
     public static void main(String[] args) {
+
+        testOrder();
+
+
+    }
+
+    /**
+     * @apiNote 测试遍历
+     * @author lbr
+     */
+    public static void testOrder(){
         BinaryTree<Integer> binaryTree = new BinaryTree<>();
         BinaryTree.TreeNode<Integer> root = new BinaryTree.TreeNode<Integer>(1);
         BinaryTree.TreeNode<Integer> node2 = new BinaryTree.TreeNode<Integer>(2);
@@ -23,16 +34,13 @@ public class BinaryTreeTest {
          */
 
         System.out.println("前序遍历");
-        binaryTree.preOrder(); // 1 2 3 4 5
+        binaryTree.preList(); // 1 2 3 4 5
 
         System.out.println("中序遍历");
-        binaryTree.infixOrder(); // 2 1 4 3 5
+        binaryTree.infixList(); // 2 1 4 3 5
 
         System.out.println("后序遍历");
-        binaryTree.postOrder(); // 2 4 5 3 1
-
-
-
+        binaryTree.postList(); // 2 4 5 3 1
     }
 
 }

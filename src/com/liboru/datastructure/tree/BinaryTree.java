@@ -9,55 +9,55 @@ public class BinaryTree<E> {
     }
 
     // 前序遍历
-    public void preOrder() {
+    public void preList() {
         if (this.root == null) {
             System.out.println("二叉树为空");
         }
-        this.preOrder(this.root);
+        this.preList(this.root);
     }
 
-    private void preOrder(TreeNode<E> node){
+    private void preList(TreeNode<E> node){
         System.out.println(node.item);
         if(node.left!=null){
-            this.preOrder(node.left);
+            this.preList(node.left);
         }
         if(node.right!=null){
-            this.preOrder(node.right);
+            this.preList(node.right);
         }
     }
 
     // 中序遍历
-    public void infixOrder(){
+    public void infixList(){
         if (this.root == null) {
             System.out.println("二叉树为空");
         }
-        this.infixOrder(this.root);
+        this.infixList(this.root);
     }
 
-    private void infixOrder(TreeNode<E> node){
+    private void infixList(TreeNode<E> node){
         if(node.left!=null){
-            this.infixOrder(node.left);
+            this.infixList(node.left);
         }
         System.out.println(node.item);
         if(node.right!=null){
-            this.infixOrder(node.right);
+            this.infixList(node.right);
         }
     }
 
     // 后序遍历
-    public void postOrder(){
+    public void postList(){
         if (this.root == null) {
             System.out.println("二叉树为空");
         }
-        this.postOrder(this.root);
+        this.postList(this.root);
     }
 
-    private void postOrder(TreeNode<E> node){
+    private void postList(TreeNode<E> node){
         if(node.left!=null){
-            this.postOrder(node.left);
+            this.postList(node.left);
         }
         if(node.right!=null){
-            this.postOrder(node.right);
+            this.postList(node.right);
         }
         System.out.println(node.item);
     }
