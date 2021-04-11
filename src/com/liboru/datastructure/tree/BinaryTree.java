@@ -12,6 +12,7 @@ public class BinaryTree<E> {
     public void preOrderList() {
         if (this.root == null) {
             System.out.println("二叉树为空");
+            return;
         }
         this.preOrderList(this.root);
     }
@@ -30,6 +31,7 @@ public class BinaryTree<E> {
     public void infixOrderList() {
         if (this.root == null) {
             System.out.println("二叉树为空");
+            return;
         }
         this.infixOrderList(this.root);
     }
@@ -48,6 +50,7 @@ public class BinaryTree<E> {
     public void postOrderList() {
         if (this.root == null) {
             System.out.println("二叉树为空");
+            return;
         }
         this.postOrderList(this.root);
     }
@@ -138,6 +141,34 @@ public class BinaryTree<E> {
             return e;
         }
         return null;
+    }
+
+    public void delNode(E e) {
+        if (root == null) {
+            return;
+        }
+        if (root.item.equals(e)) {
+            root = null;
+            return;
+        }
+        this.delNode(e, root);
+    }
+
+    private void delNode(E e, TreeNode<E> node) {
+        if (node.left != null) {
+            if (node.left.item.equals(e)) {
+                node.left = null;
+                return;
+            }
+            this.delNode(e, node.left);
+        }
+        if (node.right != null) {
+            if (node.right.item.equals(e)) {
+                node.right = null;
+                return;
+            }
+            this.delNode(e, node.right);
+        }
     }
 
     public static class TreeNode<E> {
