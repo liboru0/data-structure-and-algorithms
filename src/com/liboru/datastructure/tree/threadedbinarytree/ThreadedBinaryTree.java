@@ -10,7 +10,7 @@ public class ThreadedBinaryTree {
         this.root = root;
     }
 
-    public void threadedNodes(){
+    public void threadedNodes() {
         this.threadedNodes(root);
     }
 
@@ -44,7 +44,29 @@ public class ThreadedBinaryTree {
         // 线索化右子树
         threadedNodes(node.right);
 
+    }
 
+    // 遍历线索化二叉树
+    public void threadList() {
+        TreeNode node = root;
+
+        while (node != null) {
+
+            // 循环好到 leftType = 1 的节点
+            while (node.leftType == 0) {
+                node = node.left;
+            }
+
+            System.out.println(node.val);
+
+            while (node.rightType == 1) {
+                node = node.right;
+                System.out.println(node.val);
+            }
+
+            node = node.right;
+
+        }
     }
 
 }

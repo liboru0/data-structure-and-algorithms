@@ -9,7 +9,7 @@ public class ThreadedBinaryTreeApp {
         TreeNode node3 = new TreeNode(6);
         TreeNode node4 = new TreeNode(8);
         TreeNode node5 = new TreeNode(10);
-        TreeNode node6 = new TreeNode(13);
+        TreeNode node6 = new TreeNode(14);
 
         node1.left = node2;
         node1.right = node3;
@@ -27,6 +27,9 @@ public class ThreadedBinaryTreeApp {
         System.out.println(node5.leftType);
         System.out.println(node5.right.val);
         System.out.println(node5.rightType);
+
+        System.out.println("---------------");
+        tbt.threadList();
 
     }
 
